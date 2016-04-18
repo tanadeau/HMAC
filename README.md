@@ -1,8 +1,8 @@
 # CryptoKitten
 
-[![Build Status](https://travis-ci.org/CryptoKitten/MD5.svg?branch=master)](https://travis-ci.org/CryptoKitten/MD5)
+[![Build Status](https://travis-ci.org/CryptoKitten/HMAC.svg?branch=master)](https://travis-ci.org/CryptoKitten/HMAC)
 [![Swift Version](https://img.shields.io/badge/swift-3.0-orange.svg)](https://swift.org)
-![License](https://img.shields.io/github/license/CryptoKitten/MD5.svg)
+![License](https://img.shields.io/github/license/CryptoKitten/HMAC.svg)
 
 A set of crypto libraries for Swift, written in Swift.
  
