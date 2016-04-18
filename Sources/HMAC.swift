@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Marcin Krzyzanowski. All rights reserved.
 //
 
-import CryptoEssentials
+@_exported import CryptoEssentials
 
 final public class HMAC<Variant: HashProtocol> {
-    public static func authenticate(message:[Byte], withKey key: [Byte]) -> [Byte] {
+    public static func authenticate(message:[UInt8], withKey key: [UInt8]) -> [UInt8] {
         var key = key
         
         if (key.count > Variant.size) {
@@ -20,11 +20,11 @@ final public class HMAC<Variant: HashProtocol> {
             key = key + [UInt8](repeating: 0, count: Variant.size - key.count)
         }
         
-        var opad = [Byte](repeating: 0x5c, count: Variant.size)
+        var opad = [UInt8](repeating: 0x5c, count: Variant.size)
         for (idx, _) in key.enumerated() {
             opad[idx] = key[idx] ^ opad[idx]
         }
-        var ipad = [Byte](repeating: 0x36, count: Variant.size)
+        var ipad = [UInt8](repeating: 0x36, count: Variant.size)
         for (idx, _) in key.enumerated() {
             ipad[idx] = key[idx] ^ ipad[idx]
         }
