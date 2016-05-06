@@ -10,11 +10,11 @@
 // - Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
 // - This notice may not be removed or altered from any source or binary distribution.
 
-@_exported import CryptoEssentials
+import CryptoEssentials
+import Foundation
 
-#if !swift(>=3.0)
 final public class HMAC<Variant: HashProtocol> {
-    public static func authenticate(message message:[UInt8], withKey key: [UInt8]) -> [UInt8] {
+    public static func authenticate(message:[UInt8], withKey key: [UInt8]) -> [UInt8] {
         var key = key
         
         if (key.count > Variant.size) {
@@ -22,15 +22,15 @@ final public class HMAC<Variant: HashProtocol> {
         }
         
         if (key.count < Variant.size) { // keys shorter than blocksize are zero-padded
-            key = key + [UInt8](count: Variant.size - key.count, repeatedValue: 0)
+            key = key + [UInt8](repeating: 0, count: Variant.size - key.count)
         }
         
-        var opad = [UInt8](count: Variant.size, repeatedValue: 0x5c)
-        for (idx, _) in key.enumerate() {
+        var opad = [UInt8](repeating: 0x5c, count: Variant.size)
+        for (idx, _) in key.enumerated() {
             opad[idx] = key[idx] ^ opad[idx]
         }
-        var ipad = [UInt8](count: Variant.size, repeatedValue: 0x36)
-        for (idx, _) in key.enumerate() {
+        var ipad = [UInt8](repeating: 0x36, count: Variant.size)
+        for (idx, _) in key.enumerated() {
             ipad[idx] = key[idx] ^ ipad[idx]
         }
         
@@ -39,33 +39,16 @@ final public class HMAC<Variant: HashProtocol> {
         
         return finalHash
     }
+    
+    public static func authenticate(message: String, withKey key: [UInt8]) -> [UInt8] {
+        return authenticate(message: [UInt8](message.utf8), withKey: key)
     }
-#else
-    final public class HMAC<Variant: HashProtocol> {
-        public static func authenticate(message:[UInt8], withKey key: [UInt8]) -> [UInt8] {
-            var key = key
-            
-            if (key.count > Variant.size) {
-                key = Variant.calculate(key)
-            }
-            
-            if (key.count < Variant.size) { // keys shorter than blocksize are zero-padded
-                key = key + [UInt8](repeating: 0, count: Variant.size - key.count)
-            }
-            
-            var opad = [UInt8](repeating: 0x5c, count: Variant.size)
-            for (idx, _) in key.enumerated() {
-                opad[idx] = key[idx] ^ opad[idx]
-            }
-            var ipad = [UInt8](repeating: 0x36, count: Variant.size)
-            for (idx, _) in key.enumerated() {
-                ipad[idx] = key[idx] ^ ipad[idx]
-            }
-            
-            let ipadAndMessageHash = Variant.calculate(ipad + message)
-            let finalHash = Variant.calculate(opad + ipadAndMessageHash);
-            
-            return finalHash
-        }
+    
+    public static func authenticate(message: NSData, withKey key: NSData) -> NSData {
+        return NSData(bytes: authenticate(message: message.byteArray, withKey: key.byteArray))
     }
-#endif
+    
+    public static func authenticate(message: String, withKey key: NSData) -> NSData {
+        return NSData(bytes: authenticate(message: [UInt8](message.utf8), withKey: key.byteArray))
+    }
+}
