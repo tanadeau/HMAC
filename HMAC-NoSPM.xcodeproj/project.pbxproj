@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0AF81A1E1D048DB900543544 /* NoSPM in Resources */ = {isa = PBXBuildFile; fileRef = 0AF81A1D1D048DB900543544 /* NoSPM */; };
-		0AF81A211D048DC900543544 /* Sources in Resources */ = {isa = PBXBuildFile; fileRef = 0AF81A201D048DC900543544 /* Sources */; };
 		0AF81A241D048DDC00543544 /* HMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF81A231D048DDC00543544 /* HMAC.swift */; };
 		0AF81A261D048E1600543544 /* CryptoEssentials.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AF81A251D048E1600543544 /* CryptoEssentials.framework */; };
 /* End PBXBuildFile section */
@@ -26,11 +25,10 @@
 /* Begin PBXFileReference section */
 		0AF81A1D1D048DB900543544 /* NoSPM */ = {isa = PBXFileReference; lastKnownFileType = folder; path = NoSPM; sourceTree = "<group>"; };
 		0AF81A1F1D048DBF00543544 /* HMAC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HMAC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0AF81A201D048DC900543544 /* Sources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sources; sourceTree = "<group>"; };
 		0AF81A231D048DDC00543544 /* HMAC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HMAC.swift; path = Sources/HMAC.swift; sourceTree = "<group>"; };
 		0AF81A251D048E1600543544 /* CryptoEssentials.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoEssentials.framework; path = Carthage/Build/Mac/CryptoEssentials.framework; sourceTree = "<group>"; };
-		BD7EEA030399C7CE82FECE21 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = UnitTests.xctest; path = "/Users/joannis/Documents/CryptoKitten/HMAC/build/Debug-iphoneos/UnitTests.xctest"; sourceTree = "<absolute>"; };
-		F28CBBE98D9B4C8B2EB5B7A6 /* HMAC-NoSPM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "HMAC-NoSPM.app"; path = "/Users/joannis/Documents/CryptoKitten/HMAC/build/Debug-iphoneos/HMAC-NoSPM.app"; sourceTree = "<absolute>"; };
+		0AF81A2F1D048FC400543544 /* HMAC-NoSPM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HMAC-NoSPM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AF81A301D048FC400543544 /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,9 +62,10 @@
 			children = (
 				0AF81A251D048E1600543544 /* CryptoEssentials.framework */,
 				0AF81A231D048DDC00543544 /* HMAC.swift */,
-				0AF81A201D048DC900543544 /* Sources */,
 				0AF81A1D1D048DB900543544 /* NoSPM */,
 				0AF81A1F1D048DBF00543544 /* HMAC.framework */,
+				0AF81A2F1D048FC400543544 /* HMAC-NoSPM.app */,
+				0AF81A301D048FC400543544 /* UnitTests.xctest */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -119,7 +118,7 @@
 			);
 			name = UnitTests;
 			productName = UnitTests;
-			productReference = BD7EEA030399C7CE82FECE21 /* UnitTests.xctest */;
+			productReference = 0AF81A301D048FC400543544 /* UnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		92ACACC3B62A19A79E50C382 /* HMAC-NoSPM */ = {
@@ -138,7 +137,7 @@
 			);
 			name = "HMAC-NoSPM";
 			productName = "HMAC-NoSPM";
-			productReference = F28CBBE98D9B4C8B2EB5B7A6 /* HMAC-NoSPM.app */;
+			productReference = 0AF81A2F1D048FC400543544 /* HMAC-NoSPM.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -181,7 +180,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AF81A211D048DC900543544 /* Sources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +526,7 @@
 				0AF81A1C1D048DA600543544 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A7999C6FB1CA6FC7D726C317 /* Build configuration list for PBXProject "HMAC-NoSPM" */ = {
 			isa = XCConfigurationList;

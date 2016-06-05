@@ -14,7 +14,7 @@ import CryptoEssentials
 import Foundation
 
 final public class HMAC<Variant: HashProtocol> {
-    public static func authenticate(message:[UInt8], withKey key: [UInt8]) -> [UInt8] {
+    public static func authenticate(message msg:[UInt8], withKey key: [UInt8]) -> [UInt8] {
         var key = key
         
         if (key.count > Variant.size) {
@@ -34,21 +34,21 @@ final public class HMAC<Variant: HashProtocol> {
             ipad[idx] = key[idx] ^ ipad[idx]
         }
         
-        let ipadAndMessageHash = Variant.calculate(ipad + message)
+        let ipadAndMessageHash = Variant.calculate(ipad + msg)
         let finalHash = Variant.calculate(opad + ipadAndMessageHash);
         
         return finalHash
     }
     
-    public static func authenticate(message: String, withKey key: [UInt8]) -> [UInt8] {
-        return authenticate(message: [UInt8](message.utf8), withKey: key)
+    public static func authenticate(message msg: String, withKey key: [UInt8]) -> [UInt8] {
+        return authenticate(message: [UInt8](msg.utf8), withKey: key)
     }
     
-    public static func authenticate(message: NSData, withKey key: NSData) -> NSData {
-        return NSData(bytes: authenticate(message: message.byteArray, withKey: key.byteArray))
+    public static func authenticate(message msg: NSData, withKey key: NSData) -> NSData {
+        return NSData(bytes: authenticate(message: msg.byteArray, withKey: key.byteArray))
     }
     
-    public static func authenticate(message: String, withKey key: NSData) -> NSData {
-        return NSData(bytes: authenticate(message: [UInt8](message.utf8), withKey: key.byteArray))
+    public static func authenticate(message msg: String, withKey key: NSData) -> NSData {
+        return NSData(bytes: authenticate(message: [UInt8](msg.utf8), withKey: key.byteArray))
     }
 }
