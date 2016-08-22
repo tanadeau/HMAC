@@ -13,7 +13,7 @@
 import CryptoEssentials
 import Foundation
 
-final public class HMAC<Variant: HashProtocol> {
+public final class HMAC<Variant: HashProtocol> {
     public static func authenticate(message msg:[UInt8], withKey key: [UInt8]) -> [UInt8] {
         var key = key
         
